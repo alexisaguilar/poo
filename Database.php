@@ -1,7 +1,6 @@
 <?php
 
-
-class connectDatabase {
+class Database {
    
     
     
@@ -9,13 +8,13 @@ class connectDatabase {
     {
         $user="";
         $pass="";
-        $host="";
+        $host="localhost";
         $db="";
         $conexion=new PDO("mysql:host=$host;dbname=$db;",$user,$pass);
         return $conexion;
     }
     
-    protected function ConsultarDatabase($sqlData) {
+    public function ConsultarDatabase($sqlData) {
         
          try {
         
@@ -24,15 +23,19 @@ class connectDatabase {
         
         $statement=$conexion->prepare($sqlData);
         $statement->execute();
-            echo "Consulta realizada correctamente";
+         echo "Consulta realizada correctamente";
+       
         
         } catch (PDOException $ex) {
             echo $sqlData . "<br>" . $ex->getMessage();
         }
     }
     
+ 
     
-    public function consultarDatabase($sqlData)
+    
+    
+   /* public function consultarDatabase($sqlData)
     {
         $rows=null;
         
@@ -82,15 +85,7 @@ class connectDatabase {
         } catch (PDOException $ex) {
             echo $sqlData . "<br>" . $ex->getMessage();
         }
-    }
+    }*/
     
 }
 
-
-class hola extends connectDatabase
-{
-    public function insertar($sqldata)
-    {
-        $this->consultarDatabase($sqlData);
-    }
-}
